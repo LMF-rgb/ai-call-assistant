@@ -261,9 +261,9 @@ footer{padding:60px 0 50px;text-align:center;border-top:1px solid var(--line);ma
     <div class="phone">
       <div class="screen">
         <div class="scr-top">
-          <div class="avatar">涛</div>
+          <div class="avatar">王</div>
           <div>
-            <div class="scr-name">涛哥</div>
+            <div class="scr-name">王老板</div>
             <div class="scr-sub" id="callState">等待接听</div>
           </div>
           <div class="pulse" id="pulseDot" style="display:none"></div>
@@ -475,7 +475,7 @@ function runDemo(){
       d.className = 'bub ' + item.who;
       d.textContent = item.t;
       chat.appendChild(d);
-      chat.scrollTop = chat.scrollHeight;
+      requestAnimationFrame(()=>chat.scrollTop = chat.scrollHeight);
       if(i === SCRIPT.length - 1){
         running = false;
         state.textContent = '已结束 · 记录已保存';
