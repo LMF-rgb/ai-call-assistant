@@ -233,6 +233,21 @@ footer{padding:60px 0 50px;text-align:center;border-top:1px solid var(--line);ma
 
 .fade{opacity:0;transform:translateY(18px);transition:opacity .7s,transform .7s}
 .fade.in{opacity:1;transform:none}
+
+/* shots */
+.shots{display:grid;grid-template-columns:1fr 1fr;gap:12px}
+.shots figure{margin:0;text-align:center}
+.shots img{
+  width:100%;border-radius:16px;border:1px solid var(--line);display:block;cursor:zoom-in;
+  box-shadow:0 24px 60px -30px rgba(0,0,0,.95);
+}
+.shots figcaption{font-size:12px;color:var(--muted);margin-top:9px}
+.lightbox{
+  position:fixed;inset:0;background:rgba(0,0,0,.92);z-index:100;display:none;
+  align-items:center;justify-content:center;padding:20px;cursor:zoom-out;
+}
+.lightbox.show{display:flex}
+.lightbox img{max-width:100%;max-height:92vh;border-radius:14px}
 </style>
 </head>
 <body>
@@ -276,6 +291,23 @@ footer{padding:60px 0 50px;text-align:center;border-top:1px solid var(--line);ma
     </div>
   </div>
 </div>
+
+<section>
+  <div class="wrap">
+    <h2>装上以后，手机上长这样</h2>
+    <p class="sub">真实界面截图，点图片可以放大看</p>
+    <div class="shots">
+      <figure>
+        <img src="img/app-home.jpg" alt="AI 通话助手首页" onclick="openLB(this.src)">
+        <figcaption>首页 · 一键开启服务</figcaption>
+      </figure>
+      <figure>
+        <img src="img/app-call.jpg" alt="通话中 AI 实时应答" onclick="openLB(this.src)">
+        <figcaption>通话中 · AI 实时应答</figcaption>
+      </figure>
+    </div>
+  </div>
+</section>
 
 <section>
   <div class="wrap">
@@ -421,6 +453,10 @@ footer{padding:60px 0 50px;text-align:center;border-top:1px solid var(--line);ma
   </div>
 </section>
 
+<div class="lightbox" id="lightbox" onclick="closeLB()">
+  <img id="lbImg" src="" alt="">
+</div>
+
 <footer id="contact">
   <div class="wrap">
     <div class="foot-title">想先看看效果，或者直接说你的需求</div>
@@ -498,6 +534,15 @@ function stopDemo(){
 }
 
 btn.addEventListener('click', runDemo);
+
+/* ---------- 图片放大 ---------- */
+function openLB(src){
+  document.getElementById('lbImg').src = src;
+  document.getElementById('lightbox').classList.add('show');
+}
+function closeLB(){
+  document.getElementById('lightbox').classList.remove('show');
+}
 
 /* ---------- 微信复制 ---------- */
 const WECHAT = '改成你的微信号';
